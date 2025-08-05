@@ -1,0 +1,152 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: firebrick;
+  color: #2d2d2d;
+  line-height: 1.6;
+}
+
+.products{
+  padding: 60px 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.container{
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(320px ,1fr));
+  gap: 24px;
+}
+
+.product-details{
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px  rgba(0,0,0,0.08);
+  padding: 24px;
+  transition: 0.3s ease,box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.product-details:hover{
+  transform: translateY(-8px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+}
+
+.title{
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 12px;
+}
+
+.description{
+  font-size: 1rem;
+  color: #5c5c5c;
+  margin-bottom: 16px;
+}
+
+.category,.brand,.stock,.ratings,.reviews{
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+  color: #4a4a4a;
+}
+
+.category{
+  font-weight: 600;
+  color: #2ca02c;
+}
+.head-features,.head-tags{
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin: 20px 0 12px;
+  color: #1a1a1a;
+}
+
+.features0,.tags{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.features0 div,.tags div{
+  background-color: #e9ecef;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: #2d2d2d;
+  transition: background 0.2s ease;
+}
+
+.features0 div:hover,.tags div:hover{
+  background: #d1d5db;
+}
+
+.img{
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #adb5bd #e9ecef;
+}
+
+.img img{
+  max-width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.price{
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #2ca02c;
+  margin-bottom: 16px;
+}
+
+.btn{
+  display: inline-block;
+  background-color: firebrick;
+  color: #ffffff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background 0.3s ease,transform 0.2s ease;
+}
+
+.btn:hover{
+  color: firebrick;
+  font-weight: 600;
+  background-color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.Disabled{
+  text-decoration: line-through;
+}
+
+.remove-from-cart {
+    border: none;
+  background-color: firebrick;
+}
+
+.remove-from-cart:hover {
+  background-color: #ffffff;
+  color: firebrick;
+  transform: translateY(-2px);
+}
+
+.heading,.p-cart{
+    color: aliceblue;
+    text-align: center;
+}
