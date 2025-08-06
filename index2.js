@@ -54,8 +54,17 @@ function renderCart() {
           <span>${item.quantity}</span>
           <button class="increment" data-id="${item.id}">+</button>
         </div>
-        <div class="price">Total: $${(item.price * item.quantity).toFixed(2)}</div>
-        <button class="btn remove-from-cart" data-id="${item.id}">Remove from Cart</button>
+        <div class="img">
+        ${item.images
+          .map((img) => `<img src="${img}" alt="${item.name} image"/>`)
+          .join("")}
+      </div>
+        <div class="price">Total: $${(item.price * item.quantity).toFixed(
+          2
+        )}</div>
+        <button class="btn remove-from-cart" data-id="${
+          item.id
+        }">Remove from Cart</button>
       `;
 
       cartContainer.appendChild(productDiv);
@@ -69,7 +78,9 @@ function initialize() {
   renderCart();
 
   cartContainer.addEventListener("click", (e) => {
-    const button = e.target.closest(".remove-from-cart, .increment, .decrement");
+    const button = e.target.closest(
+      ".remove-from-cart, .increment, .decrement"
+    );
     if (!button) return;
 
     const productId = parseInt(button.getAttribute("data-id"));
