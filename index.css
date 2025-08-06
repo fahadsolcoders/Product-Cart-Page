@@ -132,7 +132,7 @@ background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%,
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: #a71d31;
+  background: firebrick;
   color: #fff;
   padding: 0.75rem 1.5rem;
   border-radius: 8px;
@@ -146,13 +146,13 @@ background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%,
 .btn:hover,
 .btn:focus {
   background: #fff;
-  color: #a71d31;
+  color: firebrick;
   transform: translateY(-3px);
   outline: none;
 }
 
 .btn:focus {
-  box-shadow: 0 0 0 3px rgba(167, 29, 49, 0.3);
+  box-shadow: 0 0 0 3px firebrick;
 }
 
 .Disabled {

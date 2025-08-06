@@ -57,6 +57,7 @@ function renderCart() {
       const productRow = document.createElement("tr");
 
       productRow.innerHTML = `
+        <td class="img"><img src = "${item.images[0]}" alt = ""></td>
         <td class="title">${item.name}</td>
         <td class="description">${item.description}</td>
         <td class="category">${item.category}</td>
@@ -76,7 +77,7 @@ function renderCart() {
         <td>
           <button class="btn remove-from-cart" data-id="${
             item.id
-          }">Remove</button>
+          }"><i class="fa-solid fa-trash"></i></button>
         </td>
       `;
 
