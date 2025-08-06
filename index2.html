@@ -5,12 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index2.css">
     <script src="index2.js" defer></script>
-    <title>Cart</title>
+    <title>Shopping Cart</title>
 </head>
 <body>
-    <div class="products">
-        <h1 class="heading">Add To Cart</h1>
-        <div class="container" id="cart-container"></div>
-    </div>
+    <main class="products">
+        <h1 class="heading">Your Cart</h1>
+        <section class="container" id="cart-container"></section>
+        <section class="cart-summary">
+            <h2>Cart Summary</h2>
+            <p class="total">Total: $<span id="cart-total">0.00</span></p>
+            <button class="btn checkout">Proceed to Checkout</button>
+        </section>
+    </main>
 </body>
 </html>

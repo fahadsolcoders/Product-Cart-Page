@@ -10,8 +10,8 @@ const products = [
     rating: 4.5,
     reviews: 340,
     features: [
-      { title: "Adjustable DPI settings", enabled: "true" },
-      { title: "Mobile phone compatibility", enabled: "false" },
+      { title: "Adjustable DPI settings", enabled: true },
+      { title: "Mobile phone compatibility", enabled: false },
     ],
     tags: ["electronics", "accessories", "mouse", "wireless"],
     images: [
@@ -30,8 +30,8 @@ const products = [
     rating: 4.7,
     reviews: 850,
     features: [
-      { title: "Noise cancellation", enabled: "true" },
-      { title: "Mobile phone compatibility", enabled: "false" },
+      { title: "Noise cancellation", enabled: true },
+      { title: "Mobile phone compatibility", enabled: false },
     ],
     tags: ["headphones", "audio", "bluetooth", "noise-cancelling"],
     images: [
@@ -50,8 +50,8 @@ const products = [
     rating: 4.3,
     reviews: 120,
     features: [
-      { title: "Vacuum insulation", enabled: "true" },
-      { title: "Mobile phone compatibility", enabled: "false" },
+      { title: "Vacuum insulation", enabled: true },
+      { title: "Mobile phone compatibility", enabled: false },
     ],
     tags: ["bottle", "kitchen", "hydration", "eco-friendly"],
     images: [
@@ -70,8 +70,8 @@ const products = [
     rating: 4.6,
     reviews: 560,
     features: [
-      { title: "RGB backlighting", enabled: "true" },
-      { title: "Mobile phone compatibility", enabled: "false" },
+      { title: "RGB backlighting", enabled: true },
+      { title: "Mobile phone compatibility", enabled: false },
     ],
     tags: ["gaming", "keyboard", "rgb", "mechanical"],
     images: [
@@ -84,69 +84,83 @@ const products = [
 const container = document.querySelector(".container");
 
 function addToCart(product) {
-
+  if (!product) return;
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  
   const existingProduct = cart.find((item) => item.id === product.id);
-  
+
   if (existingProduct) {
     existingProduct.quantity = (existingProduct.quantity || 1) + 1;
   } else {
-    cart.push({product, quantity: 1 });
+    cart.push({ ...product, quantity: 1 });
   }
-  
+
   localStorage.setItem("cart", JSON.stringify(cart));
+  window.location.href = "index2.html";
 }
 
+function renderProducts() {
+  if (!container) return;
+  container.innerHTML = "";
 
-products.forEach((item) => {
-  const productDiv = document.createElement("div");
-  productDiv.classList.add("product-details");
-  
-  productDiv.innerHTML = `
-  <h1 class="title">${item.name}</h1>
-    <p class="description">${item.description}</p>
-    <div class="category">Category: ${item.category}</div>
-    <div class="brand">Brand: ${item.brand}</div>
-    <div class="stock">Stock: ${item.stock}</div>
-    <div class="ratings">Rating: ${item.rating}/5</div>
-    <div class="reviews">Reviews: ${item.reviews}</div>
-    <h2 class="head-features">Features</h2>
-    <div class="features0">
-    ${item.features
-        .map(
-          (feature) => `
-        <div class="${feature.enabled === "true" ? "Enabled" : "Disabled"}">
-          ${feature.title} (${feature.enabled === "true" ? "Enabled" : "Disabled"})
-        </div>
+  products.forEach((item) => {
+    const productDiv = document.createElement("div");
+    productDiv.classList.add("product-details");
+
+    productDiv.innerHTML = `
+      <h1 class="title">${item.name}</h1>
+      <p class="description">${item.description}</p>
+      <div class="category">Category: ${item.category}</div>
+      <div class="brand">Brand: ${item.brand}</div>
+      <div class="stock">Stock: ${item.stock}</div>
+      <div class="ratings">Rating: ${item.rating}/5</div>
+      <div class="reviews">Reviews: ${item.reviews}</div>
+      <h2 class="head-features">Features</h2>
+      <div class="features0">
+        ${item.features
+          .map(
+            (feature) => `
+          <div class="${feature.enabled ? "Enabled" : "Disabled"}">
+            ${feature.title} (${feature.enabled ? "Enabled" : "Disabled"})
+          </div>
         `
-      )
-        .join("")}
-        </div>
-        <h2 class="head-tags">Tags</h2>
-    <div class="tags">
-      ${item.tags.map((tag) => `<div>${tag}</div>`).join("")}
-    </div>
-    <div class="img">   
-    ${item.images
-      .map((img) => `<img src="${img}" alt="${item.name}"/>`)
-      .join("")}
-    </div>
-    <div class="price">$${item.price.toFixed(2)}</div>
-    <a href="#" class="btn">Buy Now</a>
-    <a href="#" class="btn add-to-cart" data-id="${item.id}">Add To Cart</a>
-  `;
+          )
+          .join("")}
+      </div>
+      <h2 class="head-tags">Tags</h2>
+      <div class="tags">
+        ${item.tags.map((tag) => `<div>${tag}</div>`).join("")}
+      </div>
+      <div class="img">
+        ${item.images
+          .map((img) => `<img src="${img}" alt="${item.name} image"/>`)
+          .join("")}
+      </div>
+      <div class="price">$${item.price.toFixed(2)}</div>
+      <button class="btn buy-now" data-id="${item.id}">Buy Now</button>
+      <button class="btn add-to-cart" data-id="${item.id}">Add to Cart</button>
+    `;
 
-  container.appendChild(productDiv);
-});
+    container.appendChild(productDiv);
+  });
+}
 
+function initialize() {
+  renderProducts();
 
-document.querySelectorAll(".add-to-cart").forEach((button) => {
-  button.addEventListener("click", (e) => {
-    e.preventDefault(); 
+  container.addEventListener("click", (e) => {
+    const button = e.target.closest(".add-to-cart, .buy-now");
+    if (!button) return;
+
+    e.preventDefault();
     const productId = parseInt(button.getAttribute("data-id"));
     const product = products.find((item) => item.id === productId);
-    addToCart(product); 
-    window.location.href = "index2.html"; 
+
+    if (button.classList.contains("add-to-cart")) {
+      addToCart(product);
+    } else if (button.classList.contains("buy-now")) {
+      addToCart(product); 
+    }
   });
-});
+}
+
+document.addEventListener("DOMContentLoaded", initialize);
