@@ -2,7 +2,8 @@ const products = [
   {
     id: 1,
     name: "Wireless Mouse",
-    description: "Ergonomic wireless mouse with adjustable DPI and silent clicks.",
+    description:
+      "Ergonomic wireless mouse with adjustable DPI and silent clicks.",
     price: 25.99,
     category: "Electronics",
     brand: "LogiTech",
@@ -22,7 +23,8 @@ const products = [
   {
     id: 2,
     name: "Headphones",
-    description: "Over-ear headphones with noise cancellation and 30-hour battery life.",
+    description:
+      "Over-ear headphones with noise cancellation and 30-hour battery life.",
     price: 89.99,
     category: "Electronics",
     brand: "Sony",
@@ -42,7 +44,8 @@ const products = [
   {
     id: 3,
     name: "Water Bottle",
-    description: "Double-walled, vacuum insulated bottle that keeps drinks cold for 24 hours.",
+    description:
+      "Double-walled, vacuum insulated bottle that keeps drinks cold for 24 hours.",
     price: 18.5,
     category: "Home & Kitchen",
     brand: "HydroMate",
@@ -62,7 +65,8 @@ const products = [
   {
     id: 4,
     name: "Gaming Keyboard",
-    description: "RGB backlit mechanical keyboard with customizable macro keys.",
+    description:
+      "RGB backlit mechanical keyboard with customizable macro keys.",
     price: 59.99,
     category: "Electronics",
     brand: "Razer",
@@ -158,7 +162,7 @@ function initialize() {
     if (button.classList.contains("add-to-cart")) {
       addToCart(product);
     } else if (button.classList.contains("buy-now")) {
-      addToCart(product); 
+      addToCart(product);
     }
   });
 }
